@@ -8,7 +8,7 @@ public class User
     private String familyName;
     private String birthday;
     private String id;
-    public User(String name, String familyName, String birthday, String id)
+    private User(String name, String familyName, String birthday, String id)
     {
         this.name = name;
         this.familyName = familyName;
@@ -17,7 +17,7 @@ public class User
     }
     public User() {}
 
-    public User(Map<String, String> user) {
+    private User(Map<String, String> user) {
        this.name=user.get("name");
        this.familyName = user.get("familyName");
        this.birthday =user.get("birthday");
@@ -48,6 +48,7 @@ public class User
         this.name = name;
     }
     public void setId(String id){this.id=id;}
+
 
     @Override
     public String toString()

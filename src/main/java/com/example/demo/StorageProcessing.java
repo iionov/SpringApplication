@@ -7,23 +7,26 @@ import com.google.gson.*;
 import java.io.*;
 import java.util.Map;
 
-import static com.example.demo.GreetingController.myUsers;
-import static com.example.demo.GreetingController.myusers;
+import static com.example.demo.CommandsProcessing.*;
 
+/**
+ * Class for working with storage (database).
+ */
 public class StorageProcessing {
-
-    public static void getUsersFromFile()  {
+    /**
+     * Before each start of the program this method updates data from a file.
+     */
+    public  void getUsersFromFile(String path)  {
         JsonElement js= null;
         try {
-            RandomAccessFile randomAccessFile = new RandomAccessFile("src\\main\\resources\\templates\\Users.json", "rw");
+            RandomAccessFile randomAccessFile = new RandomAccessFile(path, "rw");
             if (randomAccessFile.length()>0){
                 try {
-                    js = new JsonParser().parse(new FileReader("src\\main\\resources\\templates\\Users.json"));
+                    js = new JsonParser().parse(new FileReader(path));
                     JsonObject jo =(JsonObject) js;
-                    myusers=(JsonArray) jo.get("Users");
-                    String my0=myusers.get(0).toString();
-                    for (int i=0;i<myusers.size();i++){
-                        JsonElement elementFromJsonArray=myusers.get(i);
+                    myUsersJsonArray=(JsonArray) jo.get("Users");
+                    for (int i=0;i<myUsersJsonArray.size();i++){
+                        JsonElement elementFromJsonArray=myUsersJsonArray.get(i);
                         String founderJson=elementFromJsonArray.toString();
                         transformationJsonElementToMap(founderJson);
                     }
@@ -35,7 +38,7 @@ public class StorageProcessing {
             else {
                 randomAccessFile.writeBytes("{\"Users\":[]}");
                 randomAccessFile.close();
-                getUsersFromFile();
+                getUsersFromFile(path);
             }
         }
         catch (FileNotFoundException e) {
@@ -46,9 +49,13 @@ public class StorageProcessing {
         }
     }
 
-    public static void writeToJsonNewUser(String string){
+    /**
+     * This method adds new users to the file.
+     * @param string information about new user
+     */
+    public  void writeToJsonNewUser(String string, String path){
         try {
-            RandomAccessFile randomAccessFile = new RandomAccessFile("src\\main\\resources\\templates\\Users.json", "rw");
+            RandomAccessFile randomAccessFile = new RandomAccessFile(path, "rw");
             long pos = randomAccessFile.length();
             if (randomAccessFile.length()>0){
                 while (randomAccessFile.length() > 0) {
@@ -71,7 +78,11 @@ public class StorageProcessing {
         }
     }
 
-    public static void transformationJsonElementToMap(String jsonString) {
+    /**
+     * This method converts a string to a map.
+     * @param jsonString string, that want ro convert.
+     */
+    public  void transformationJsonElementToMap(String jsonString) {
         ObjectMapper mapper = new ObjectMapper();
         try {
 
@@ -85,19 +96,26 @@ public class StorageProcessing {
         }
     }
 
-    public static void deleteUserInFile(String id) throws FileNotFoundException {
+    /**
+     * This method deletes data from the file.
+     * @throws FileNotFoundException signals that an attempt to open the file denoted by a specified pathname has failed.
+     */
+    public void deleteUserInFile(String path) throws FileNotFoundException {
         if (myUsers.size()==0){
-            PrintWriter writer = new PrintWriter("src\\main\\resources\\templates\\Users.json");
+            PrintWriter writer = new PrintWriter(path);
             writer.print("");
             writer.close();
         }
         else {
-            writeToFileAfterUpdatingUser();
+            writeToFileAfterUpdatingUser(path);
         }
     }
-    public static void writeToFileAfterUpdatingUser(){
+    /**
+     * This method updates data in the file.
+     */
+    public void writeToFileAfterUpdatingUser(String path){
         try {
-            PrintWriter writer=new PrintWriter(new File("src\\main\\resources\\templates\\Users.json"));
+            PrintWriter writer=new PrintWriter(new File(path));
             Gson gson=new Gson();
             writer.print("{\"Users\":[");
                 if (myUsers.size()==1)
