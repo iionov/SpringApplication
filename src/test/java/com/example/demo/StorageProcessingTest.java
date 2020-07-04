@@ -10,7 +10,7 @@ import org.junit.Test;
 import java.io.*;
 import java.util.*;
 
-import static com.example.demo.CommandsProcessing.myUsersJsonArray;
+import static com.example.demo.UsersController.myUsersJsonArray;
 import static org.junit.Assert.*;
 
 public class StorageProcessingTest {

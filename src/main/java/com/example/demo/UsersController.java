@@ -17,10 +17,11 @@ import static com.example.demo.ServingWebContentApplication.processing;
  * Class for processing commands from client
  */
 @RestController
-public class CommandsProcessing {
+public class UsersController {
     public static JsonArray myUsersJsonArray = new JsonArray();
     public static List<Map<String, String>> myUsers = new ArrayList<>();
     public static String path = "src\\main\\resources\\templates\\Users.json";
+
     /**
      * @param user information about new user (in JSON), which client passes to the server.
      * @return information about user, that was created.

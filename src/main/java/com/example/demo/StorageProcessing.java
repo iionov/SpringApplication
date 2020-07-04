@@ -9,7 +9,7 @@ import com.google.gson.*;
 import java.io.*;
 import java.util.Map;
 
-import static com.example.demo.CommandsProcessing.*;
+import static com.example.demo.UsersController.*;
 
 /**
  * Class for working with storage (database).

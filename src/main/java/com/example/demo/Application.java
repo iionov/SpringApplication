@@ -21,7 +21,7 @@ class ServingWebContentApplication {
      */
     public static void main(String[] args) {
         processing = context.getBean("storageProcessing", StorageProcessing.class);
-        processing.getUsersFromFile(CommandsProcessing.path);
+        processing.getUsersFromFile(UsersController.path);
         SpringApplication.run(ServingWebContentApplication.class, args);
     }
 
