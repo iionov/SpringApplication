@@ -51,10 +51,10 @@ public class CommandsProcessing {
      * @return information about user.
      */
     private Map<String, String> findUserInList(@PathVariable String id) {
-        return myUsers.stream().
-                filter(user -> user.get("id").equals(id)).
-                findFirst().
-                orElseThrow(NotFoundExeption::new);
+        return myUsers.stream()
+                .filter(user -> user.get("id").equals(id))
+                .findFirst()
+                .orElseThrow(NotFoundExeption::new);
     }
 
     /**
