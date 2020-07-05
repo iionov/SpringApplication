@@ -18,6 +18,7 @@ public class StorageProcessing {
     /**
      * Before each start of the program this method updates data from a file.
      */
+
     public void getUsersFromFile(String path) {
         JsonElement js = null;
         try {

@@ -9,12 +9,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @author Ionov Ivan.
  */
+
 @SpringBootApplication
 class ServingWebContentApplication {
+
     public static StorageProcessing processing;
     public static ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
             "applicationContext.xml"
     );
+
 
     /**
      * At the beginning the user information is read from the file to the List "myUsers".

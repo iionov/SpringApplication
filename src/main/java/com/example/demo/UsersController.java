@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.google.gson.*;
 import exeptions.NotFoundExeption;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,10 @@ import static com.example.demo.ServingWebContentApplication.processing;
  */
 @RestController
 public class UsersController {
+
+    public static ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+            "applicationContext.xml"
+    );
     public static JsonArray myUsersJsonArray = new JsonArray();
     public static List<Map<String, String>> myUsers = new ArrayList<>();
     public static String path = "src\\main\\resources\\templates\\Users.json";
@@ -43,6 +48,7 @@ public class UsersController {
     @GetMapping("{id}")
     private Map<String, String> showUser(@PathVariable String id) {
         return findUserInList(id);
+
     }
 
     /**

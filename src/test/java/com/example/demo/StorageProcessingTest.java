@@ -7,13 +7,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static com.example.demo.UsersController.myUsersJsonArray;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class StorageProcessingTest {
+
     public String path = "src\\test\\java\\resources\\UsersTest.json";
     public String example = "{\"name\":" + "\"" + "attribute1" + "\"" + ",\"familyName\":" + "\"" + "attribute2" +
             "\"" + ",\"birthday\":" + "\"" + "attribute3" + "\"" + ",\"id\":" + "\"" + "attribute4" + "\"" + "}";
@@ -23,7 +26,7 @@ public class StorageProcessingTest {
     public static void add() {
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = "{\"name\":" + "\"" + "attribute1" + "\"" + ",\"familyName\":" + "\"" + "attribute2" +
-                "\"" + ",\"birthday\":" + "\"" + "attribute3" + "\"" + ",\"id\":" + "\"" + "attribute4" + "\"" + "}";
+                "\"" + ",\"birthday\":" + "\"" + "attribute3" + "\"" + ",\"id\":" + "\"" + "1" + "\"" + "}";
         try {
 
             Map<String, String> jsonInMap = mapper.readValue(jsonString,
@@ -54,7 +57,6 @@ public class StorageProcessingTest {
         int lengthAfter = myUsersJsonArray.size();
         assertEquals(lengthBefore + 1, lengthAfter);
     }
-
 
     @Test
     public void transformationJsonElementToMapTest() {

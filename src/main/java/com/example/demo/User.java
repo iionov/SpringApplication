@@ -8,7 +8,7 @@ public class User {
     private String birthday;
     private String id;
 
-    private User(String name, String familyName, String birthday, String id) {
+   private User(String name, String familyName, String birthday, String id) {
         this.name = name;
         this.familyName = familyName;
         this.birthday = birthday;
@@ -18,7 +18,7 @@ public class User {
     public User() {
     }
 
-    private User(Map<String, String> user) {
+    public User(Map<String, String> user) {
         this.name = user.get("name");
         this.familyName = user.get("familyName");
         this.birthday = user.get("birthday");
